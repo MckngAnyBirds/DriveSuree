@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Owner dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body class="admin">
+
+<!-- sticky top bar -->
+<div class="site-header admin-bar"><div class="container"><nav class="navbar">
+  <a class="logo" href="index.html" id="logo"></a>
+  <span class="fw-semibold ms-3 d-none d-sm-inline">Owner dashboard</span>
+  <div class="ms-auto d-flex gap-2 align-items-center">
+    <a href="index.html" class="btn btn-sm btn-outline-dark btn-pill"><i class="bi bi-globe2 me-1"></i><span class="d-none d-sm-inline">View website</span></a>
+    <button class="btn btn-sm btn-dark btn-pill d-none" id="logoutBtn" type="button"><i class="bi bi-box-arrow-right me-1"></i>Log out</button>
+  </div>
+</nav></div></div>
+
+<!-- LOGIN -->
+<main id="loginView" class="d-none">
+  <div class="page-hero" style="min-height:100vh;display:flex;align-items:center;padding-top:100px;padding-bottom:3rem">
+    <div class="container"><div class="row justify-content-center"><div class="col-sm-9 col-md-6 col-lg-4">
+      <form id="loginForm" class="bg-white text-dark p-4 rounded-3 shadow">
+        <h1 class="h4 mb-1 text-dark">Owner login</h1>
+        <p class="small text-secondary mb-3">Only the dealer can manage cars, receipts and inquiries.</p>
+        <div id="emailRow" class="mb-3"><label class="form-label" for="loginEmail">Email</label><input id="loginEmail" type="email" class="form-control" autocomplete="username" autocapitalize="off" spellcheck="false"></div>
+        <label class="form-label" for="loginPw">Password</label>
+        <input id="loginPw" type="password" class="form-control" required autocomplete="off" autocapitalize="off" autocorrect="off" spellcheck="false">
+        <div class="text-danger small mt-2 d-none" id="loginErr">Wrong password. Try again.</div>
+        <button class="btn btn-accent w-100 mt-3 py-2" type="submit">Log in</button>
+      </form>
+    </div></div></div>
+  </div>
+</main>
+
+<!-- DASHBOARD -->
+<main id="dashView" class="d-none">
+  <div class="container" style="padding-top:110px;padding-bottom:4rem">
+    <div class="row g-3 mb-4" id="stats"></div>
+
+    <ul class="nav nav-pills gap-2 mb-4 flex-wrap" role="tablist">
+      <li class="nav-item"><button class="nav-link active" data-bs-toggle="pill" data-bs-target="#tabCars" type="button">Cars</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tabSales" type="button">Sales and receipts</button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tabChat" type="button">Chats <span class="badge text-bg-danger d-none" id="chatBadge">0</span></button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tabInq" type="button">Inquiries <span class="badge text-bg-primary" id="inqBadge">0</span></button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tabApps" type="button">Applications <span class="badge text-bg-primary" id="appBadge">0</span></button></li>
+      <li class="nav-item"><button class="nav-link" data-bs-toggle="pill" data-bs-target="#tabSet" type="button">Contact and settings</button></li>
+    </ul>
+
+    <div class="tab-content">
+      <div class="tab-pane fade show active" id="tabCars">
+        <div class="d-flex flex-wrap gap-2 justify-content-between mb-3">
+          <input id="adminSearch" class="form-control" style="max-width:320px" type="search" placeholder="Search your listings" aria-label="Search your listings">
+          <button class="btn btn-accent px-4" id="addCarBtn" type="button"><i class="bi bi-plus-lg me-1"></i>Add car</button>
+        </div>
+        <div class="table-responsive bg-white border rounded-3">
+          <table class="table align-middle mb-0">
+            <thead class="table-light"><tr><th>Photo</th><th>Car</th><th>Type</th><th>Price</th><th>Status</th><th class="text-end">Actions</th></tr></thead>
+            <tbody id="adminCars"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="tabSales">
+        <div class="table-responsive bg-white border rounded-3">
+          <table class="table align-middle mb-0">
+            <thead class="table-light"><tr><th>Receipt no.</th><th>Date</th><th>Car</th><th>Buyer</th><th>Amount</th><th class="text-end">Actions</th></tr></thead>
+            <tbody id="adminSales"></tbody>
+          </table>
+        </div>
+        <p class="small text-secondary mt-2">To create a receipt, press the receipt button next to a car in the Cars tab.</p>
+      </div>
+
+      <div class="tab-pane fade" id="tabInq">
+        <div class="table-responsive bg-white border rounded-3">
+          <table class="table align-middle mb-0">
+            <thead class="table-light"><tr><th>Date</th><th>From</th><th>Topic</th><th>Message</th><th></th></tr></thead>
+            <tbody id="adminInq"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="tabChat">
+        <div id="inboxHost" class="bg-white border rounded-3 overflow-hidden"></div>
+      </div>
+
+      <div class="tab-pane fade" id="tabApps">
+        <div class="table-responsive bg-white border rounded-3">
+          <table class="table align-middle mb-0">
+            <thead class="table-light"><tr><th>Date sent</th><th>Applicant</th><th>Car</th><th>Status</th><th class="text-end">Actions</th></tr></thead>
+            <tbody id="adminApps"></tbody>
+          </table>
+        </div>
+      </div>
+
+      <div class="tab-pane fade" id="tabSet">
+        <div class="row g-4">
+          <div class="col-lg-7">
+            <form id="setForm" class="bg-white border rounded-3 p-4">
+              <h2 class="h5 mb-3">Business and contact information</h2>
+              <div class="row g-3">
+                <div class="col-md-6"><label class="form-label" for="sName">Business name</label><input id="sName" class="form-control" required></div>
+                <div class="col-md-6"><label class="form-label" for="sCur">Currency symbol</label><input id="sCur" class="form-control" maxlength="4" required></div>
+                <div class="col-md-6"><label class="form-label" for="sPhone">Phone</label><input id="sPhone" class="form-control"></div>
+                <div class="col-md-6"><label class="form-label" for="sEmail">Email</label><input id="sEmail" type="email" class="form-control"></div>
+                <div class="col-12"><label class="form-label" for="sAddr">Address</label><input id="sAddr" class="form-control"></div>
+                <div class="col-12"><label class="form-label" for="sHours">Open hours</label><input id="sHours" class="form-control"></div>
+                <div class="col-12"><hr class="my-1"><h3 class="h6 mt-3">Promo banner (home page)</h3></div>
+                <div class="col-md-6"><label class="form-label" for="sPT">Banner headline</label><input id="sPT" class="form-control"></div>
+                <div class="col-md-3"><label class="form-label" for="sPB">Badge</label><input id="sPB" class="form-control"></div>
+                <div class="col-md-3"><label class="form-label" for="sPX">Badge text</label><input id="sPX" class="form-control"></div>
+                <div class="col-12"><button class="btn btn-accent px-4" type="submit">Save settings</button></div>
+              </div>
+            </form>
+          </div>
+          <div class="col-lg-5">
+            <form id="pwForm" class="bg-white border rounded-3 p-4 mb-4">
+              <h2 class="h5 mb-3">Change owner password</h2>
+              <label class="form-label" for="newPw">New password</label>
+              <input id="newPw" type="password" class="form-control mb-3" minlength="6" required autocomplete="new-password">
+              <button class="btn btn-dark" type="submit">Update password</button>
+            </form>
+            <div class="bg-white border rounded-3 p-4">
+              <h2 class="h5 mb-2">Backup</h2>
+              <p class="small text-secondary">Download a copy of your cars, receipts, inquiries and settings. Restoring adds the backup's data to what you already have.</p>
+              <div class="d-flex flex-wrap gap-2">
+                <button class="btn btn-outline-dark" id="exportBtn" type="button"><i class="bi bi-download me-1"></i>Download backup</button>
+                <label class="btn btn-outline-dark mb-0"><i class="bi bi-upload me-1"></i>Restore backup<input type="file" id="importFile" accept=".json,application/json" hidden></label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>
+
+<!-- add / edit car -->
+<div class="modal fade" id="formModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"><form class="modal-content" id="carForm">
+  <div class="modal-header"><h5 class="modal-title" id="formTitle">Add car</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+  <div class="modal-body">
+    <input type="hidden" id="fId">
+    <div class="row g-3">
+      <div class="col-md-4"><label class="form-label" for="fBrand">Brand</label><input id="fBrand" class="form-control" list="brandList" required></div>
+      <div class="col-md-5"><label class="form-label" for="fModel">Model</label><input id="fModel" class="form-control" required></div>
+      <div class="col-md-3"><label class="form-label" for="fYear">Year</label><input id="fYear" type="number" min="1950" max="2100" class="form-control" required></div>
+      <div class="col-md-4"><label class="form-label" for="fType">Car type</label><select id="fType" class="form-select"></select></div>
+      <div class="col-md-4"><label class="form-label" for="fPrice">Price</label><input id="fPrice" type="number" min="0" step="1" class="form-control" required></div>
+      <div class="col-md-4"><label class="form-label" for="fMile">Mileage (km)</label><input id="fMile" type="number" min="0" class="form-control"></div>
+      <div class="col-md-4"><label class="form-label" for="fCond">Condition</label><select id="fCond" class="form-select"><option value="new">Brand new</option><option value="second_hand" selected>Second hand</option></select></div>
+      <div class="col-md-3"><label class="form-label" for="fTrans">Transmission</label><select id="fTrans" class="form-select"><option>Automatic</option><option>Manual</option></select></div>
+      <div class="col-md-3"><label class="form-label" for="fFuel">Fuel</label><select id="fFuel" class="form-select"><option>Gasoline</option><option>Diesel</option><option>Hybrid</option><option>Electric</option></select></div>
+      <div class="col-md-3"><label class="form-label" for="fColor">Color</label><input id="fColor" class="form-control"></div>
+      <div class="col-md-3"><label class="form-label" for="fStatus">Status</label><select id="fStatus" class="form-select"><option value="available">Available</option><option value="sold">Sold</option></select></div>
+      <div class="col-12"><label class="form-label" for="fDesc">Description</label><textarea id="fDesc" rows="3" class="form-control" placeholder="Condition, features, number of owners, papers..."></textarea></div>
+      <div class="col-md-6"><label class="form-label" for="fFile">Photo</label><input id="fFile" type="file" accept="image/*" class="form-control"><div class="form-text">Or paste an image link below.</div><input id="fImgUrl" class="form-control mt-2" placeholder="https://..." aria-label="Image link"></div>
+      <div class="col-md-6 d-flex align-items-center justify-content-center"><img id="fPreview" alt="Photo preview" class="img-fluid rounded border" style="max-height:170px"></div>
+      <div class="col-12"><div class="form-check"><input class="form-check-input" type="checkbox" id="fFeat"><label class="form-check-label" for="fFeat">Feature this car (highlighted on the website)</label></div></div>
+    </div>
+    <datalist id="brandList"></datalist>
+  </div>
+  <div class="modal-footer"><button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cancel</button><button class="btn btn-accent px-4" type="submit">Save car</button></div>
+</form></div></div>
+
+<!-- receipt form -->
+<div class="modal fade" id="rcptModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"><form class="modal-content" id="rcptForm">
+  <div class="modal-header"><h5 class="modal-title">Create receipt</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+  <div class="modal-body">
+    <input type="hidden" id="rCar">
+    <div class="alert alert-secondary py-2" id="rCarInfo"></div>
+    <div class="row g-3">
+      <div class="col-md-6"><label class="form-label" for="rName">Buyer name</label><input id="rName" class="form-control" required></div>
+      <div class="col-md-6"><label class="form-label" for="rPhone">Buyer phone</label><input id="rPhone" class="form-control"></div>
+      <div class="col-12"><label class="form-label" for="rAddr">Buyer address</label><input id="rAddr" class="form-control"></div>
+      <div class="col-md-4"><label class="form-label" for="rAmt">Amount paid</label><input id="rAmt" type="number" min="0" step="1" class="form-control" required></div>
+      <div class="col-md-4"><label class="form-label" for="rPay">Payment method</label><select id="rPay" class="form-select"><option>Cash</option><option>Bank transfer</option><option>Check</option><option>GCash / e-wallet</option><option>Financing</option></select></div>
+      <div class="col-md-4"><label class="form-label" for="rDate">Date</label><input id="rDate" type="date" class="form-control" required></div>
+      <div class="col-12"><label class="form-label" for="rNote">Notes</label><textarea id="rNote" rows="2" class="form-control" placeholder="Balance, downpayment, plate number, release date..."></textarea></div>
+      <div class="col-12"><div class="form-check"><input class="form-check-input" type="checkbox" id="rSold" checked><label class="form-check-label" for="rSold">Mark this car as sold</label></div></div>
+    </div>
+  </div>
+  <div class="modal-footer"><button type="button" class="btn btn-outline-dark" data-bs-dismiss="modal">Cancel</button><button class="btn btn-accent px-4" type="submit"><i class="bi bi-printer me-1"></i>Save and print</button></div>
+</form></div></div>
+
+<div class="modal fade" id="appModal" tabindex="-1" aria-hidden="true"><div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable"><div class="modal-content">
+  <div class="modal-header"><h5 class="modal-title" id="appTitle">Application</h5><button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button></div>
+  <div class="modal-body" id="appBody"></div>
+  <div class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" id="appStatusBtn"></button>
+    <button type="button" class="btn btn-accent px-4" id="appPrintBtn"><i class="bi bi-printer me-1"></i>Print</button>
+  </div>
+</div></div></div>
+
+<div id="printArea"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/db.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/chat.js"></script>
+<script src="assets/js/admin.js"></script>
+</body>
+</html>

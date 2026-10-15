@@ -1,0 +1,224 @@
+/* =====================================================================
+   STYLES  (shared by all pages)
+   ---------------------------------------------------------------------
+   EDIT THE COLORS AND FONT HERE. Everything below uses these variables.
+   Sections:  1 Theme  2 Navbar  3 Home hero  4 Page banner  5 Sections
+              6 Cars & filters  7 Footer  8 Owner dashboard  9 Print receipt
+   ===================================================================== */
+
+/* ---------- 1. THEME ---------- */
+:root{
+  --brand:#0b2459;        /* DriveSure navy (from the logo): dark sections, selected chips */
+  --brand-deep:#07173d;   /* darker navy: hover states */
+  --accent:#2a5bc0;       /* buttons and highlights */
+  --accent-hover:#214ba3;
+  --accent-soft:#dbe5f7;  /* light blue: active nav link, featured car card */
+  --gray:#6b6d71;         /* DriveSure gray (from the logo) */
+  --ink:#0a0a0c;          /* main text */
+  --paper:#f2f3f5;        /* light grey section background */
+  --bs-body-font-family:'Outfit',system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;  /* font: also change the Google Fonts link in each page */
+}
+html{scroll-behavior:smooth;scroll-padding-top:100px}
+body{font-family:var(--bs-body-font-family);color:var(--ink);background:#fff}
+h1,h2,h3,h4,h5{font-weight:700;letter-spacing:-.02em}
+.btn-accent{background:var(--accent);color:#fff;border:0;border-radius:.4rem;font-weight:500}
+.btn-accent:hover,.btn-accent:focus{background:var(--accent-hover);color:#fff}
+.btn-pill{border-radius:50rem}
+.btn-dark{--bs-btn-bg:var(--brand);--bs-btn-border-color:var(--brand);--bs-btn-hover-bg:var(--brand-deep);--bs-btn-hover-border-color:var(--brand-deep);--bs-btn-active-bg:var(--brand-deep);--bs-btn-active-border-color:var(--brand-deep)}
+.text-accent{color:var(--accent)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+
+/* ---------- 2. STICKY PILL NAVBAR ---------- */
+.site-header{position:sticky;top:0;z-index:1030;height:0}
+.site-header .navbar{margin-top:14px;background:#fff;border-radius:2rem;padding:.5rem 1.1rem;box-shadow:0 10px 30px rgba(0,0,0,.22)}
+.logo{display:inline-block;font-weight:800;font-size:1.3rem;letter-spacing:-.03em;color:var(--brand);text-decoration:none;line-height:1}
+.logo-img{display:block;height:46px;width:auto}
+footer .logo-img{height:70px}
+.admin-bar .logo-img{height:40px}
+.site-header .nav-link{color:var(--ink);font-size:.88rem;font-weight:500;padding:.45rem .6rem;border-radius:2rem;white-space:nowrap}
+.site-header .nav-link.active,.site-header .nav-link:hover{background:var(--accent-soft)}
+.nav-search{position:relative}
+.nav-search input{border-radius:2rem;padding-left:2.1rem;background:#f1f1f3;border:0;min-width:170px}
+.nav-search i{position:absolute;left:.8rem;top:50%;transform:translateY(-50%);color:#666}
+.admin-btn{width:40px;height:40px;flex:none;border-radius:50%;background:var(--brand);color:#fff;border:0;display:inline-flex;align-items:center;justify-content:center;text-decoration:none}
+.admin-btn:hover{background:var(--accent);color:#fff}
+@media (max-width:1199.98px){
+  .site-header .navbar{border-radius:1.4rem}
+  .site-header .navbar-collapse{max-height:75vh;overflow:auto}
+  .nav-search input{width:100%}
+}
+
+/* ---------- 3. HOME HERO ---------- */
+.hero{position:relative;min-height:660px;background:radial-gradient(120% 90% at 70% 10%,#3b4f7d 0%,#14224a 45%,#060b1c 100%);color:#fff;overflow:hidden}
+.hero-img{position:absolute;right:-4%;top:70px;width:min(62%,780px);aspect-ratio:16/10;object-fit:cover;border-radius:1rem;
+  -webkit-mask-image:linear-gradient(to left,#000 55%,transparent);mask-image:linear-gradient(to left,#000 55%,transparent)}
+.hero-icon{position:absolute;right:6%;top:90px;font-size:min(34vw,360px);line-height:1;color:rgba(255,255,255,.12)}
+.hero-inner{position:relative;padding-top:180px;padding-bottom:170px}
+.hero h1{font-size:clamp(2.6rem,7vw,4.6rem);line-height:1;max-width:9ch;color:#fff}
+.hero p{max-width:34ch;font-size:.95rem;color:#cfd0d6}
+.hero-search{position:absolute;left:0;right:0;bottom:0;z-index:5}
+.hero-search .bar{background:#fff;color:var(--ink);border-radius:.6rem .6rem 0 0;padding:1rem}
+.hero-search label{font-size:.72rem;color:#666;margin-bottom:.1rem}
+.hero-search .form-select,.hero-search .form-control{border:0;border-bottom:1px solid #ddd;border-radius:0;padding-left:0;box-shadow:none}
+
+/* ---------- 4. PAGE BANNER (inner pages) ---------- */
+.page-hero{background:radial-gradient(110% 140% at 80% 0%,#2f4577,#08102a 70%);color:#fff;padding:130px 0 2.6rem}
+.page-hero h1{font-size:clamp(2.1rem,5.5vw,3.4rem);font-weight:800;margin:0;color:#fff}
+.page-hero p{color:#cfd0d6;margin:.6rem 0 0;max-width:48ch}
+
+/* ---------- 5. SECTIONS (home) ---------- */
+.section{padding:4.5rem 0}
+.section-title{font-size:clamp(2rem,5vw,3rem);font-weight:800}
+.bg-paper{background:var(--paper)}
+
+.type-card{position:relative;display:block;height:100%;min-height:230px;border-radius:.3rem;overflow:hidden;color:#fff;text-decoration:none;background:#222}
+.type-card img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.type-card:hover img{transform:scale(1.05)}
+.type-card::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.55),rgba(0,0,0,0) 55%)}
+.type-card .t{position:absolute;z-index:2;top:.8rem;left:1rem;font-size:1.5rem;font-weight:500}
+.type-card .n{position:absolute;z-index:2;top:3rem;left:1rem;font-size:.85rem;opacity:.85}
+.type-card .go{position:absolute;z-index:2;right:.9rem;bottom:.9rem;width:36px;height:36px;border-radius:50%;background:#fff;color:var(--ink);display:flex;align-items:center;justify-content:center}
+
+/* ---------- 6. CARS & FILTERS ---------- */
+.chip{border:1px solid #cfd1d6;background:#fff;border-radius:50rem;padding:.35rem .95rem;font-size:.9rem;font-weight:500;color:var(--ink)}
+.chip:hover{border-color:var(--accent)}
+.chip.on{background:var(--brand);border-color:var(--brand);color:#fff}
+.chip small{opacity:.6}
+
+.car{background:#fff;border:1px solid #e3e4e8;height:100%;display:flex;flex-direction:column;transition:box-shadow .2s;text-decoration:none;color:var(--ink)}
+.car:hover{box-shadow:0 12px 30px rgba(0,0,0,.1);color:var(--ink)}
+.car.feat{background:var(--accent-soft)}
+.car .photo{aspect-ratio:4/3;object-fit:cover;width:100%;background:#ddd}
+.car .body{padding:1rem 1.1rem 1.1rem;display:flex;flex-direction:column;flex:1}
+.car h3{font-size:1.15rem;margin:0}
+.spec{font-size:.8rem;color:#5d6068}
+.price{font-size:1.25rem;font-weight:700}
+.btn-outline-ink{border:1px solid #cfd1d6;background:#fff;border-radius:50rem;font-size:.85rem;padding:.35rem 1rem;color:var(--ink)}
+.car:hover .btn-outline-ink,.btn-outline-ink:hover{background:var(--brand);color:#fff}
+
+.perks{background:var(--brand);color:#fff}
+.perk{padding:2rem 1.2rem;display:flex;gap:1rem;align-items:center;height:100%;border-right:1px solid rgba(255,255,255,.12)}
+.perk i{font-size:2.1rem;color:#fff}
+.perk span{font-size:.9rem;color:#dbe3f5}
+
+.promo{background:radial-gradient(90% 120% at 80% 50%,#2a3f70,#07102a);color:#fff;position:relative;overflow:hidden}
+.promo .big{position:absolute;right:30%;bottom:-40px;font-size:18rem;color:rgba(255,255,255,.06);line-height:1}
+.promo .badge-box{background:var(--accent);color:#fff;padding:1.2rem 1.6rem;max-width:240px}
+.promo .badge-box b{font-size:2.6rem;display:block;line-height:1}
+
+.contact-card{background:var(--paper);border-radius:.5rem;padding:1.1rem 1.2rem;display:flex;gap:.9rem;align-items:flex-start}
+.contact-card i{font-size:1.4rem;color:var(--accent)}
+.step{display:flex;gap:1rem;align-items:flex-start}
+.step .no{flex:none;width:38px;height:38px;border-radius:50%;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:600}
+.filters{background:#fff;border:1px solid #e3e4e8;border-radius:.6rem;padding:1.1rem}
+.empty{padding:3rem 1rem;text-align:center;color:#777}
+
+/* ---------- 7. FOOTER ---------- */
+footer.site-footer{background:#fff;border-top:1px solid #eee}
+footer.site-footer a{color:#555;text-decoration:none;font-size:.9rem}
+footer.site-footer a:hover{color:var(--accent)}
+
+/* ---------- 8. OWNER DASHBOARD ---------- */
+body.admin{background:#f7f7f9}
+.stat{background:#fff;border:1px solid #e3e4e8;border-radius:.5rem;padding:1rem 1.2rem}
+.stat b{font-size:1.8rem;display:block;line-height:1.1}
+.thumb{width:64px;height:48px;object-fit:cover;border-radius:.3rem;background:#ddd}
+.nav-pills .nav-link{color:var(--ink);font-weight:500}
+.nav-pills .nav-link.active{background:var(--brand);color:#fff}
+.admin-bar .navbar{padding:.5rem 1.1rem}
+
+/* ---------- 9. PRINT RECEIPT ---------- */
+#printArea{display:none}
+.receipt{font-family:'Outfit',Arial,sans-serif;color:#000;max-width:720px;margin:0 auto;padding:24px;border:1px solid #bbb}
+@media print{
+  body *{visibility:hidden !important}
+  #printArea,#printArea *{visibility:visible !important}
+  #printArea{display:block !important;position:absolute;left:0;top:0;width:100%}
+  .receipt{border:0}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none !important;scroll-behavior:auto !important}}
+
+/* ---------- CAR CONDITION TAG, SAVE (HEART) BUTTON ---------- */
+.car-wrap{position:relative;height:100%}
+.car .pic{position:relative}
+.car .pic img{display:block}
+.tag{position:absolute;left:.6rem;top:.6rem;background:rgba(255,255,255,.95);color:var(--ink);font-size:.72rem;font-weight:600;padding:.2rem .65rem;border-radius:50rem}
+.tag.new{background:var(--accent);color:#fff}
+.fav{position:absolute;right:.6rem;top:.6rem;z-index:2;width:36px;height:36px;border-radius:50%;border:0;background:#fff;color:var(--ink);display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.2)}
+.fav:hover,.fav.on{color:#d6336c}
+.btn-fav.on{color:#d6336c;border-color:#d6336c}
+.auth-card{max-width:460px;margin:0 auto;background:#fff;border:1px solid #e3e4e8;border-radius:.8rem;padding:1.6rem}
+
+/* Keep the long navbar on one row on small laptops (1200-1399px) */
+@media (min-width:1200px) and (max-width:1399.98px){
+  .site-header .nav-link{padding:.45rem .4rem;font-size:.84rem}
+  .nav-search input{min-width:120px}
+  .site-header .navbar{padding:.5rem .8rem}
+}
+
+/* ===== Live chat: bubble (lower-left) and owner inbox ===== */
+.min-w-0{min-width:0}
+.chat-widget{position:fixed;left:16px;bottom:16px;z-index:1040;font-family:inherit}
+.chat-fab{position:relative;width:56px;height:56px;border-radius:50%;border:0;background:var(--brand);color:#fff;font-size:1.5rem;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.3);cursor:pointer}
+.chat-fab:hover{background:var(--accent)}
+.chat-fab:focus-visible{outline:3px solid var(--accent-soft);outline-offset:2px}
+.chat-dot{position:absolute;top:-4px;right:-4px;min-width:22px;height:22px;padding:0 5px;border-radius:11px;background:#dc3545;color:#fff;font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid #fff}
+.chat-panel{position:absolute;left:0;bottom:70px;width:360px;max-width:calc(100vw - 32px);height:min(520px,calc(100vh - 110px));background:#fff;border-radius:1rem;box-shadow:0 18px 50px rgba(0,0,0,.3);display:flex;flex-direction:column;overflow:hidden}
+.chat-panel.d-none{display:none !important}
+.chat-panel>header{background:var(--brand);color:#fff;padding:.8rem 1rem;display:flex;align-items:center;gap:.5rem}
+.chat-x{background:transparent;border:0;color:#fff;font-size:1rem;padding:.25rem .4rem;cursor:pointer}
+.chat-msgs{flex:1;overflow-y:auto;padding:.9rem;background:#f4f5f8;display:flex;flex-direction:column;gap:.5rem;min-height:0}
+.chat-m{max-width:82%;display:flex;flex-direction:column}
+.chat-m .b{padding:.5rem .8rem;border-radius:1rem;font-size:.92rem;line-height:1.35;white-space:pre-wrap;overflow-wrap:anywhere}
+.chat-m .t{font-size:.68rem;color:#777;margin-top:2px;padding:0 .3rem}
+.chat-m.me{align-self:flex-end;align-items:flex-end}.chat-m.me .b{background:var(--accent);color:#fff;border-bottom-right-radius:.3rem}
+.chat-m.them{align-self:flex-start}.chat-m.them .b{background:#fff;color:var(--ink);border:1px solid #e3e5ea;border-bottom-left-radius:.3rem}
+.chat-info{display:flex;gap:.4rem;padding:.5rem .7rem 0;background:#fff}
+.chat-form{display:flex;gap:.5rem;align-items:flex-end;padding:.6rem .7rem;background:#fff;border-top:1px solid #eceef2}
+.chat-form textarea{flex:1;resize:none;border:1px solid #d8dbe2;border-radius:1.2rem;padding:.45rem .85rem;font-size:.92rem;max-height:110px;field-sizing:content;min-height:2.3rem}
+.chat-form textarea:focus{outline:2px solid var(--accent-soft);border-color:var(--accent)}
+.chat-form button{width:40px;height:40px;border-radius:50%;border:0;background:var(--accent);color:#fff;flex:none}
+.chat-form button:hover{background:var(--brand)}
+@media (max-width:480px){.chat-panel{width:calc(100vw - 32px)}}
+
+.chat-widget.owner .chat-panel{width:380px;height:min(560px,calc(100vh - 110px))}
+.inbox{display:flex;height:100%;min-height:0;background:#fff}
+.inbox-list,.inbox-thread{display:flex;flex-direction:column;min-height:0;min-width:0;flex:1}
+.inbox-head{padding:.8rem 1rem;font-weight:600;background:var(--brand);color:#fff}
+.inbox-items{overflow-y:auto;flex:1}
+.inbox-none,.inbox-empty{padding:2rem 1rem;text-align:center;color:#777;font-size:.9rem}
+.inbox-empty{margin:auto}
+.inbox-item{display:block;width:100%;text-align:left;border:0;border-bottom:1px solid #eceef2;background:#fff;padding:.7rem 1rem}
+.inbox-item:hover,.inbox-item.active{background:var(--accent-soft)}
+.inbox-item .top{display:flex;justify-content:space-between;gap:.5rem}
+.inbox-item .when{font-size:.72rem;color:#777;white-space:nowrap}
+.inbox-item .sub{font-size:.78rem;color:#777}
+.inbox-item .prev{display:flex;justify-content:space-between;gap:.5rem;font-size:.85rem;align-items:center}
+.inbox-conv{display:flex;flex-direction:column;flex:1;min-height:0}
+.inbox-conv.d-none{display:none !important}
+.inbox-top{display:flex;gap:.6rem;align-items:center;padding:.6rem .8rem;border-bottom:1px solid #eceef2;background:#fff}
+/* narrow (bubble): show either the list or the conversation */
+.inbox:not(.wide) .inbox-thread{display:none}
+.inbox:not(.wide).has-thread .inbox-list{display:none}
+.inbox:not(.wide).has-thread .inbox-thread{display:flex}
+/* wide (owner dashboard): list on the left, conversation on the right */
+.inbox.wide{height:600px}
+.inbox.wide .inbox-list{flex:0 0 300px;border-right:1px solid #eceef2}
+.inbox.wide .inbox-thread{flex:1}
+.inbox.wide .inbox-back{display:none}
+@media (max-width:767.98px){
+  .inbox.wide .inbox-list{flex:1;border-right:0}
+  .inbox.wide .inbox-thread{display:none}
+  .inbox.wide.has-thread .inbox-list{display:none}
+  .inbox.wide.has-thread .inbox-thread{display:flex}
+  .inbox.wide .inbox-back{display:inline-block}
+}
+.chat-widget.owner .inbox-host,.chat-widget.owner .inbox{height:100%}
+@media print{.chat-widget{display:none !important}}
+
+/* Show/hide password eye */
+.pw-wrap{position:relative}
+.pw-wrap input{padding-right:2.8rem}
+.pw-toggle{position:absolute;top:0;right:0;bottom:0;width:2.8rem;border:0;background:transparent;color:#666;display:flex;align-items:center;justify-content:center;font-size:1.1rem;cursor:pointer}
+.pw-toggle:hover{color:var(--brand)}
+input[type="password"]::-ms-reveal,input[type="password"]::-ms-clear{display:none}

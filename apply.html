@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<!-- Page: application form. Script: assets/js/apply.js | Edit the fields in the SECTIONS list at the top of that script. -->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apply here</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+<link href="assets/css/style.css" rel="stylesheet">
+</head>
+<body>
+<div id="siteHeader"></div>
+
+<header class="page-hero"><div class="container">
+  <h1>Apply here</h1>
+  <p>Fill in the application form below and we will review it and contact you.</p>
+</div></header>
+
+<main class="section bg-paper" style="padding-top:2.5rem">
+  <div class="container" style="max-width:960px">
+    <div id="appDone" class="d-none bg-white p-5 rounded-3 text-center border">
+      <i class="bi bi-check-circle text-success" style="font-size:3rem"></i>
+      <h2 class="h4 mt-2">Application sent</h2>
+      <p class="text-secondary mb-4">Thank you! We received your application and will contact you using your mobile number or email.</p>
+      <a class="btn btn-accent px-4" href="cars.html">Browse cars</a>
+    </div>
+    <form id="appForm" novalidate>
+      <div id="appSections"></div>
+      <div class="bg-white p-4 rounded-3 border mb-3">
+        <div class="form-check mb-3">
+          <input class="form-check-input" type="checkbox" id="agree">
+          <label class="form-check-label small" for="agree">I confirm that everything above is true. I agree that DriveSure Auto Solutions may collect and use my information to process my application and may verify it with my references and bank.</label>
+        </div>
+        <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px">
+        <div id="appErr" class="text-danger small mb-2"></div>
+        <button class="btn btn-accent px-5 py-2" type="submit">Submit application</button>
+      </div>
+    </form>
+  </div>
+</main>
+
+<div id="siteFooter"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/db.js"></script>
+<script src="assets/js/app.js"></script>
+<script src="assets/js/chat.js"></script>
+<script src="assets/js/apply.js"></script>
+</body>
+</html>
