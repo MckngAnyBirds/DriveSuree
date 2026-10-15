@@ -158,12 +158,12 @@ body.admin{background:#f7f7f9}
 
 /* ===== Live chat: bubble (lower-left) and owner inbox ===== */
 .min-w-0{min-width:0}
-.chat-widget{position:fixed;left:16px;bottom:16px;z-index:1040;font-family:inherit}
+.chat-widget{position:fixed;right:16px;bottom:16px;z-index:1040;font-family:inherit}
 .chat-fab{position:relative;width:56px;height:56px;border-radius:50%;border:0;background:var(--brand);color:#fff;font-size:1.5rem;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(0,0,0,.3);cursor:pointer}
 .chat-fab:hover{background:var(--accent)}
 .chat-fab:focus-visible{outline:3px solid var(--accent-soft);outline-offset:2px}
 .chat-dot{position:absolute;top:-4px;right:-4px;min-width:22px;height:22px;padding:0 5px;border-radius:11px;background:#dc3545;color:#fff;font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;border:2px solid #fff}
-.chat-panel{position:absolute;left:0;bottom:70px;width:360px;max-width:calc(100vw - 32px);height:min(520px,calc(100vh - 110px));background:#fff;border-radius:1rem;box-shadow:0 18px 50px rgba(0,0,0,.3);display:flex;flex-direction:column;overflow:hidden}
+.chat-panel{position:absolute;right:0;bottom:70px;width:360px;max-width:calc(100vw - 32px);height:min(520px,calc(100vh - 110px));background:#fff;border-radius:1rem;box-shadow:0 18px 50px rgba(0,0,0,.3);display:flex;flex-direction:column;overflow:hidden}
 .chat-panel.d-none{display:none !important}
 .chat-panel>header{background:var(--brand);color:#fff;padding:.8rem 1rem;display:flex;align-items:center;gap:.5rem}
 .chat-x{background:transparent;border:0;color:#fff;font-size:1rem;padding:.25rem .4rem;cursor:pointer}
